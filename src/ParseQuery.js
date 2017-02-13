@@ -273,9 +273,15 @@ export default class ParseQuery {
 
     let controller = CoreManager.getQueryController();
 
+    let findJson = this.toJSON();
+
+    if (options.hasOwnProperty('readPreference')) {
+      findJson.readPreference = options.readPreference;
+    }
+
     return controller.find(
       this.className,
-      this.toJSON(),
+      findJson,
       findOptions
     ).then((response) => {
       return response.results.map((data) => {
