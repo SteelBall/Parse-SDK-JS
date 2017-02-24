@@ -465,6 +465,9 @@ export default class ParseQuery {
     if (options.hasOwnProperty('sessionToken')) {
       findOptions.sessionToken = options.sessionToken;
     }
+    if (options.hasOwnProperty('readPreference')) {
+      findOptions.readPreference = options.readPreference;
+    }
 
     var finished = false;
     return ParsePromise._continueWhile(() => {
