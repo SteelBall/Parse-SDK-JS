@@ -227,6 +227,9 @@ export default class ParseQuery {
     if (options && options.hasOwnProperty('sessionToken')) {
       firstOptions.sessionToken = options.sessionToken;
     }
+    if (options && options.hasOwnProperty('readPreference')) {
+      firstOptions.readPreference = options.readPreference;
+    }
 
     return this.first(firstOptions).then((response) => {
       if (response) {
@@ -376,6 +379,9 @@ export default class ParseQuery {
 
     var params = this.toJSON();
     params.limit = 1;
+    if (options && options.hasOwnProperty('readPreference')) {
+      params.readPreference = options.readPreference;
+    }
 
     return controller.find(
       this.className,

@@ -7364,6 +7364,9 @@ var ParseQuery = function () {
       if (options && options.hasOwnProperty('sessionToken')) {
         firstOptions.sessionToken = options.sessionToken;
       }
+      if (options && options.hasOwnProperty('readPreference')) {
+        firstOptions.readPreference = options.readPreference;
+      }
 
       return this.first(firstOptions).then(function (response) {
         if (response) {
@@ -7515,6 +7518,9 @@ var ParseQuery = function () {
 
       var params = this.toJSON();
       params.limit = 1;
+      if (options && options.hasOwnProperty('readPreference')) {
+        params.readPreference = options.readPreference;
+      }
 
       return controller.find(this.className, params, findOptions).then(function (response) {
         var objects = response.results;
